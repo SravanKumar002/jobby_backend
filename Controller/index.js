@@ -30,16 +30,16 @@ const AuthorizeUser = async (req, res, next) => {
 
 const Register = async (req, res) => {
   console.log(req.body);
-  const { username, email, password } = req.body;
-  console.log(email);
+  const { user, email, password } = req.body;
+  console.log(user);
   // console.log(username);
-  const user = await models.findOne({ email });
+  const user1 = await models.findOne({ email });
   try {
     // console.log(user);
-    if (user == null) {
+    if (user1 == null) {
       const hasedpassword = await bcrypt.hash(password, 10);
       const newuser = {
-        username,
+        user,
         email,
         password: hasedpassword,
       };
